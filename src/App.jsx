@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person.jsx'
 
+// można zamiast bindowania używać arrow func. ale jest to mnie wydajne:
+// <button onClick={() => this.switchNameHandler('Maximilian!!!')}>Switch name</button>
+
 class App extends Component {
   state = {
     persons: [
@@ -17,8 +20,7 @@ class App extends Component {
 this.setState({persons: [
   {name : newName, age : '24'},
   {name : 'Stephanie', age : '52'},
-  {name : 'Ami', age : '4'},
-  {name : 'Noe', age : '12'}
+  {name : 'Ami', age : '4'}
 ]})
   }
 
@@ -34,7 +36,7 @@ this.setState({persons: [
         <Person
           name = {this.state.persons[1].name}
           age = {this.state.persons[1].age}
-          click = {this.switchNameHandler}>
+          click = {this.switchNameHandler.bind(this, 'Trollo')}>
           My hobbies : Games </Person>
         <Person
           name = {this.state.persons[2].name}
