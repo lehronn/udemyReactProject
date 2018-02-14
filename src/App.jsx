@@ -8,20 +8,28 @@ import Person from './Person/Person.jsx'
 class App extends Component {
   state = {
     persons: [
-      {name:'Mateusz', age:'17'},
-      {name:'Aleksandra', age:'21'},
-      {name:'Iwona', age:'51'},
-      {name:'Jerzy', age:'23'}
+      {name:'Maximilian', age:'17'},
+      {name:'Manu', age:'21'},
+      {name:'Stephanie', age:'51'},
+      {name:'John', age:'23'}
     ]
   }
 
   switchNameHandler = (newName) => {
     // console.log('Was clicked.');
-this.setState({persons: [
-  {name : newName, age : '24'},
-  {name : 'Stephanie', age : '52'},
-  {name : 'Ami', age : '4'}
-]})
+    this.setState({persons: [
+      {name : newName, age : '24'},
+      {name : 'Manu', age : '52'},
+      {name : 'Stephanie', age : '4'}
+    ]})
+  }
+
+  nameChangedHandler = (event) => {
+    this.setState({persons:[
+      {name : 'Max', age : '25'},
+      {name : event.target.value, age : '22'},
+      {name : 'Stephanie', age : '34'}
+    ]})
   }
 
   render() {
@@ -32,24 +40,22 @@ this.setState({persons: [
         <Person
           name = {this.state.persons[0].name}
           age = {this.state.persons[0].age}>
-          My hobbies: Racing</Person>
+          My hobbies: Racing
+        </Person>
         <Person
           name = {this.state.persons[1].name}
           age = {this.state.persons[1].age}
-          click = {this.switchNameHandler.bind(this, 'Trollo')}>
-          My hobbies : Games </Person>
+          click = {this.switchNameHandler.bind(this, 'Steph')}
+          changed= {this.nameChangedHandler}>
+          My hobbies : Games
+        </Person>
         <Person
           name = {this.state.persons[2].name}
-          age = {this.state.persons[2].age}
-          click = {this.switchNameHandler}>
-          My hobbies : Music </Person>
+          age = {this.state.persons[2].age}>
+        </Person>
         <Person
-          name = "Iwona"
+          name = "Josh"
           age = "16"/>
-        <Person
-          name = "Ludwik"
-          age = "125">
-          My hobbies : Dance </Person>
       </div>
     );
   }
