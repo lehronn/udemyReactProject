@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person.jsx'
+import UserOutput from './UserOutput/UserOutput.jsx';
+import UserInput from './UserInput/UserInput.jsx';
 
 // można zamiast bindowania używać arrow func. ale jest to mnie wydajne:
 // <button onClick={() => this.switchNameHandler('Maximilian!!!')}>Switch name</button>
 
 class App extends Component {
   state = {
+    userNames: [
+      {userName: 'Adam'},
+      {userName: 'Ewa'}
+    ],
     persons: [
       {name:'Maximilian', age:'17'},
       {name:'Manu', age:'21'},
@@ -32,10 +38,19 @@ class App extends Component {
     ]})
   }
 
+  userNameChangedHandler = (event) => {
+    this.setState({userNames:[
+      {userName : event.target.value}
+    ]})
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
+        <UserOutput userName= "Gość"/>
+        <UserOutput userName = {this.state.userNames[0].userName} />
+        <UserInput changed = {this.userNameChangedHandler} userName={this.state.userNames[0].userName}/>
         <button onClick={this.switchNameHandler.bind(this, 'Max')}>Switch name</button>
         <Person
           name = {this.state.persons[0].name}
